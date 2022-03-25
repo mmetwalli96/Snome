@@ -23,7 +23,6 @@ module.exports = {
   deleteMatch: async ({ snome_id, snome_user_id }, match_id) => {
     try {
       const odd = match_id % 2;
-      console.log(odd);
       switch (odd) {
         case 0:
           id = match_id - 1;
