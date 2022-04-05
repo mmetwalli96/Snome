@@ -21,6 +21,7 @@ async function uploadToS3(file) {
     // this function should accept a file object and ranomly generated filename...
     // RETURN a promise of S3 URL
 
+    console.log(fs.createReadStream(file.path));
 
     return new Promise(async function(resolve, reject){
         const params = ({
