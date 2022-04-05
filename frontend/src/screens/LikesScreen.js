@@ -26,17 +26,23 @@ const LikesScreen = () => {
 
   const [active, setActive] = useState([0]);
 
-  console.log('TEST W/ MM ZB')
-
   const getSnomeLikes = async () => {
     const user_id = context.user_data.user_id;
     let response = await fetch('http://localhost:3000/like/navbar/' + user_id);
     console.log(response);
     let json = await response.json();
     setData(json);
-
-    console.log("Here are your Snome's you've liked");
   };
+
+  const deleteLike = async (snome_id) => {
+    const user_id = context.user_data.user_id;
+    let response = await fetch(
+      'http://localhost:3000/unlike/' + snome_id + '/' + user_id,
+      {
+        method: 'DELETE',
+      }
+    );
+  }
 
   useEffect(() => {
     getSnomeLikes();
@@ -115,7 +121,7 @@ const LikesScreen = () => {
               </Card.Content>
               <Card.Actions>
                 {/* //need functionality for this to be unliked */}
-                <Button mode="outlined" icon="heart-off">
+                <Button mode="outlined" icon="heart-off" onPress={() => deleteLike(item.snome_id)}>
                   Unlike
                 </Button>
               </Card.Actions>

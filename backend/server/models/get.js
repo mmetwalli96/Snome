@@ -92,7 +92,6 @@ module.exports = {
       const checkStatus = await db.one(`SELECT * FROM match WHERE user_id = $1 AND snome_id = $2`, [snome_user_id, snome_id]);
       return checkStatus;
     } catch (error) {
-      console.log(`DATABASE ERROR: ${error}`);
       return error;
     }
   },
